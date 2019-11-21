@@ -1,0 +1,149 @@
+   EXERCISE-1
+1. Write a shell script that adds an extension “.new” to all the files in the directory.
+
+  for f in *; do 
+  mv "$f" "$f.new"; done
+
+2.Delete file which has special characters. “ -“, “—“, “*”, “$”.
+
+rm ">>filename"
+
+3. Write a shell script that take two input numbers from user at runtime and display arithmetic
+operation on that numbers, find out max, & min number from them, find weather that numbers
+negative or positive.
+
+#!/bin/bash
+num1=0
+num2=0
+echo -n "Enter the first number: "
+read num1
+echo -n "Enter the second number: "
+read num2
+echo "first number + second number = $((num1 + num2))"
+echo "first number - second number = $((num1 - num2))"
+echo "first number * second number = $((num1 * num2))"
+echo "first number / second number = $((num1 / num2))"
+echo "first number % second number = $((num1 % num2))"
+
+if [ $num1 -gt $num2 ]
+then
+    echo "$num1 is maximum number"
+    echo "$num2 is minimum number"
+else
+    echo "$num2 is maximum number"
+    echo "$num1 is minimum number"
+fi
+
+if [ $num1 -lt 0 ] && [ $num2 -lt 0 ]
+then
+    echo "$num1 is Negative"
+    echo "$num2 is Negative"
+elif [ $num1 -gt 0 ] && [ $num2 -gt 0 ]
+then
+    echo "$num1 is Positive"
+    echo "$num2 is Positive"
+elif [ $num1 -lt 0 ] && [ $num2 -gt 0 ]
+then
+    echo "$num1 is Negative"
+    echo "$num2 is Positive"
+elif [ $num1 -gt 0 ] && [ $num2 -lt 0 ]
+then
+    echo "$num1 is Positive"
+    echo "$num2 is Negative"
+else
+    echo "Invalid Input"
+fi
+
+4.Write a shell script that take one input number from user and print 1 to n number using three
+loops (For, while, until). (N = entered number)
+
+#!/bin/bash
+## For Loop
+echo "for loop::"
+echo -n "Enter a number:"
+read number
+for((i=1;i<=number;i++));
+do
+   echo $i
+ done
+
+##While Loop
+echo "-------"
+echo "while loop::"
+n=1
+echo -n "Enter a number:"
+read number
+while  (( $n <= number ))
+do
+        echo "$n"
+        n=$(( n+1 ))     
+done
+
+##until
+echo "-------"
+echo "until loop::"
+i=1
+echo -n "Enter a number:"
+read num
+until (( $i >= num+1 ));
+do
+      echo "$i"
+      i=$(( i+1 ))
+done
+
+5.Write a shell script to display the last updated file of the newest file in a directory.
+
+ls -lrt | tail -1
+l - long listing
+r - reverse list 
+t - sort by modification time[newest file]
+
+6.Write a shell script to get the total count of the word “Linux” in all the “.txt” files and also across
+files present in subdirectories.
+
+grep -c -R 'linux'
+c - count
+R - subdirectories
+
+7. Write a shell script that copy all the directories, subdirectories and files from one location to
+another specific location.
+
+cp dir_name
+
+8.Display specific number of lines as follow:
+1. Display first and last 10 lines of file contains
+2. Display line no. 3 to 8 from file contains.
+3. Display 7 lines and start from second last line in reverse manner.
+1.head filename 
+    tail filename
+2.ex +3,8p -scq file1.txt
+(or) sed -n 5,8p file
+3.tac file1.txt > file5.txt
+sed -n '2,9p' file5.txt
+
+9. Perform following task:
+1. Add two new users and two groups
+2. Login as one user and then create new file
+3. Send created file from one user to another user
+4. Login as second user and copy that file from user2 to user1(in same system)
+ sudo useradd username | su - username
+           sudo ca ask the password su wont ask for the password
+           sudo passwd username ---> to set password for the user
+           sudo useradd sravya
+           sudo  useradd radha
+           two users created
+           gedit /etc/passwd ----> to show the created user
+
+ sudo groupadd gropuname ---> to create group 
+           sudo group  family
+           sudo -a -G family sravya ----> to add existing user into group
+           grep group_name /etc/group ---> show which user is in this group
+
+  su - username ---> to enter into he user we can perform what we want  
+            cat > file ---> this file created in this particulat user
+
+   sudo source_path destination path ---> send file from souece user to destination user
+             sudo /home/sravya/file1.txt  /home/radha/file.txt
+10.Task to find all files from folder where file contains string 'abc'
+
+grep -r "abc"

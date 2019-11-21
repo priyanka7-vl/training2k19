@@ -1,0 +1,194 @@
+Linux Commands::
+
+ls --> listing files and directories
+less--> view text files
+file--> classify a file's contents
+cd --> change directory
+cp--> copy files and directories
+mv--> move or rename files and directories
+rm--> remove files and directories
+mkdir--> create directories
+type--> Display information about command type
+which--> Locate a command
+help--> Display reference page for shell builtin
+man--> Display an on-line command reference[manual page]
+ls > file.txt --> Standard Output Redirection
+ls >> file.txt --> To append new content
+sort < file_list.txt --> Standard Input Redirection
+sort < file_list.txt > sorted_file_list.txt --> Also to redirect o/p
+ 
+Pipelines
+
+ls -l | less
+ls -lt | head
+
+Filters
+
+1.sort
+Sorts standard input then outputs the sorted result on standard output.
+2.uniq
+Given a sorted stream of data from standard input, it removes duplicate lines of data (i.e., it makes sure that every line is 		unique).
+3.grep
+Examines each line of data it receives from standard input and outputs every line that contains a specified pattern of characters.
+4.fmt
+Reads text from standard input, then outputs formatted text on standard output.
+5.pr
+Takes text input from standard input and splits the data into pages with page breaks, headers and footers in preparation for 		printing.
+6.head
+Outputs the first few lines of its input. Useful for getting the header of a file.
+7.tail
+Outputs the last few lines of its input. Useful for things like getting the most recent entries from a log file.
+8.tr
+Translates characters. Can be used to perform tasks such as upper/lowercase conversions or changing line termination characters from one type to another (for example, converting DOS text files into Unix style text files).
+9.sed
+Stream editor. Can perform more sophisticated text translations than tr.
+10.awk
+An entire programming language designed for constructing filters. Extremely powerful.
+
+echo D* --> Directories/Files that Starts with D.
+echo *s -->  Directories/Files that ends with D.
+echo [[:upper:]]* -->  Any Directories/Files that Start with UpperCase.
+echo ~  -->  tilde character[~] --> Used to dispaly name of the user in home directory,if no user is there it will display the current user.
+Arithmatic Expansion
+echo $(($((5**2)) * 3))
+echo Front-{A,B,C}-Back
+echo {Z..A}
+echo Number_{1..5}
+echo "$USER $((2+2)) $(cal)"
+chmod--> modify file access rights
+su--> temporarily become the superuser
+sudo --> temporarily become the superuser
+chown--> change file ownership
+chgrp--> change a file's group ownership
+
+rwx rwx rwx = 111 111 111
+rw- rw- rw- = 110 110 110
+rwx --- --- = 111 000 000
+
+and so on...
+
+rwx = 111 in binary = 7
+rw- = 110 in binary = 6
+r-x = 101 in binary = 5
+r-- = 100 in binary = 4
+
+
+File Permissions
+Value
+Meaning
+777
+(rwxrwxrwx) No restrictions on permissions. Anybody may do anything.
+755
+(rwxr-xr-x) The file's owner may read, write, and execute the file. All others may read and execute the file. 
+700
+(rwx------) The file's owner may read, write, and execute the file. Nobody else has any rights. 
+666
+(rw-rw-rw-) All users may read and write the file.
+644
+(rw-r--r--) The owner may read and write a file, while all others may only read the file. A common setting for data files that everybody may read, but only the owner may change.
+600
+(rw-------) The owner may read and write a file. All others have no rights. A common setting for data files that the owner wants to keep private.
+ps --> list the processes running on the system
+kill--> send a signal to one or more processes (usually to "kill" a process)
+jobs --> an alternate way of listing your own processes
+xload--> which displays a graph representing system load
+echo $PATH --> displays the path separated with semi-colons.
+cat command: It is used to create the file with content.
+touch command:It is used to create a file without any content. The file created using touch command is empty. This command can be used when the user doesn’t have data to store at the time of file creation.
+
+~/.bash_profile  and ~/.bashrc
+A user's personal startup file. Can be used to extend or override settings in the global configuration script.
+Here Document 
+Variables
+Command Substitution and Constants
+Shell Functions
+Flow Control -1
+if
+test
+exit 
+Flow Control -2
+for
+while
+until
+User Creation
+sudo and su
+sudo::
+It requires current user's password i.e your own password[user's own password]
+No need to share root previliges to others.
+Allows to run a single command.
+Commands run through sudo are executed as target user("root user" defaultly).
+Gives access to commands that are only required.
+To stop particular user from accessing root previliges just pull the entry from "sudoers" file.
+su::
+To switch to superuser/root account also to non-root user as well.
+$su --> requires password of "root"
+$su  -  --> logins defaultly as "root" user.
+
+Diff btw su and su - ::
+su --> 1. Only chances user, and not home directories.
+                     2. It keeps the environment of the old/original user even after the switch to root has been made.
+su -  --> 1. Will give you a login screen, and change paths, home directory, etc..
+                        2. It creates a new environment [explicit login -screen].
+
+Can we execute a file without reading?
+Basically,to execute a file, interpreter requires to read it but if we use a c program then it is possible to execute without reading a file because a c prgm doesn't require read permission to execute it. [solution:: A simple C program that embeds the script and calls the interpreter explicitly].
+If we do so Kernel will run the shell but immediately the file get crashed as it can't be able to read the input file.
+
+Hidden Files Accessing::
+/etc/passwd  -->Once a new user created, it’s entry automatically added to the ‘/etc/passwd‘  file. The file is used to store users information and their entry.
+
+1.tar :  
+           -- To create compressed archieve files and that can be moved easily from one disk to another.
+tar stands for --> " Tape Archieve ".
+tar cvf archieve_name.tar dirname/  -->  To create a new tar archieve.
+tar xvf archieve_name.tar   -->   To extract from an tar archieve.
+tar tvf archieve_name.tar  -->  To view existing tar archieve.
+ 2.grep :
+           -- To search for a given string in a file.
+grep -i "hello" filename.sh --> case insensitive.
+grep -r "hello"*  --> recursive search in all files.
+grep -A 3 -i "hello" first.sh  --> to print matched line along with after 3 lines.
+3.find :
+           -- It can be used to find files and directories and perform subsequent operations on them.
+find -iname "first.sh" -->  to find a file.
+find ~ -empty  -->  to find all empty files.
+4.ssh :
+           -- Remote hosting
+ssh -V -->  to view the "ssh client version".
+ssh hostaddress@rapidops.com  --> for remote login.
+5.diff :
+           -- To compare two files and print the first difference occurance line.
+diff -w file1.sh file2.sh  -->  to remove whitespace and comparing two files.
+6.sort : 
+           -- To sort in an order.
+sort filename.sh  --> to sort in an ascending order.
+sort -r filename.sh  --> to sort in an descending order.
+7.shutdown :
+            -- To shutdown a system 
+shutdown -h now  --> to shutdown a system currently.
+shutdown -h +10  --> to shutdown a system after 10 minutes.
+shutdown -r now  -->  to reboot a system.
+8.ps :
+            -- To display processes that are working currently.
+ps --> current working proccesses.
+ps -efH --> to dispaly in hierarchy model(tree structure);H --> stands for Hierarchy.
+9.free :
+           -- Displays the total amount of free space available along with the amount of memory used and swap memory in the system.
+free --> dispalys available space.
+free -g --> dispaly available space in GB; MB --> free -m;K --> Kilo Bytes.
+Note Points ::
+1.cp -i file1 file2 -->  since the "-i" (interactive) option is specified, if file2 exists, the user is prompted before it is overwritten with the contents of file1.
+2.cp -R dir1 dir2 -->  Copy the contents of the directory dir1. If directory dir2 does not exist, it is created. Otherwise, it creates a directory named dir1 within directory dir2.
+***3. mv file1 file2 -->  If file2 does not exist, then file1 is renamed file2. If file2 exists, its contents are silently replaced with the contents of file1.
+4.which -->  To determine exact location of executable program.
+5.help  -->  command documentation [name,synopsis,description]. Ex: mkdir --help.
+6.">" --> To redirect standard o/p to a file.  ">>" -->  To append new file content and to redirect o/p to a file.
+7."~"  -->  Name of the home directory of the named user.
+8.To send signals to all processes.
+9."<<" -->  "Here Document"
+"<<-"  --> removes leading tab spaces.
+10.In here Doc -->  cat <<- _EOF_ is a token that starting and at ending the token should be same it is user defined string.
+11.df -->  drive space.
+12.echo $? -->  parameter refers success means "0"(deafult 0).
+13.set +x  -->  Tracing off
+      set -x -->  Tracing on.

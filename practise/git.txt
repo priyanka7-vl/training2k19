@@ -1,0 +1,304 @@
+Git::
+Introduction::
+
+Linus Torvald --> 2005
+open source
+Distributed Version Control System(VCS) --> Everyone has their own copy in local repository 
+                                                                                           If sever fail and internet connection is less then after connection we can push our data into git
+SCM [S/w Configuration Mangement] or [Source Code Management]
+Trunk Based Development --> Branch(master) --> if u r currently working on one branch in version 4.0 and you want to add new features with 5.0 then create another new branch or if u do on same branch it will loss 4.0 and updated to 5 so better create new one if all went good with 5.0 features then merge or push those features into master branch.
+GitHub
+Bitbucket
+gitlab
+Workflow of git::
+Step 1 − modify a file from the working directory.
+Step 2 − add these files to the staging area.
+Step 3 − perform commit operation that moves the files  from the staging area. After push operation, it stores the changes  permanently to the Git repository.
+
+git config::
+$ git config --global user.name "username"
+$ git config --global user.email "emailexmp@exm.com"
+
+git commands::
+git init --> creates new git repository.It can be used to convert an existing, unversioned project to a Git repository or initialize a new, empty repository.
+git status --> displays the state of the working directory and the staging area. It lets you see which changes have been staged, which haven't, and which files aren't being tracked by Git.
+git add filename --> adds a change in the working directory to the staging area.
+git add . (or) git add -A --> to add multiple files at a time.
+git commit -m "message" -->m[message] user defined --> captures a snapshot of the project's currently staged changes.To save changes in the local repisitory.
+git commit -a -m "message" --> to commit all files at a time.
+git log --> log history of commit.
+ git branch branch_name --> to create a new branch.
+git checkout branch_name --> to move to a branch.
+git checkout -b branch_name --> at a time creates a branch and switches to that branch.
+git merge branch_name --> to merge files present in branch to master.
+git pull --> pulls files from central repository and stores directly on master branch.
+git fetch --> it also pulls files from central repository and stores on different branch not connected with current workflow
+Note point:
+While doing git fetch --> also do git merge can see change in local repository.
+While doing git pull --> equals to git pull + git merge.
+git rebasing::
+       -- Another kind of merging.
+to navigate easily and to maintain neat linear workflow.
+key generating::
+ssh-keygen --> genarates a ssh key. enter until key generated.
+cd to user then type --> cat .ssh/id_rsa.pub  --> it generates a ssh key --> copy and paste in remote repo >settings>ssh key>new ssh key>title>paste key>add ssh key.
+ssh -T git@github.com  --> to test the ssh connection.
+Adding remote::
+git remote add origin git@github.com:priyanka7-vl/test.git --> to add a remote with name origin using ssh key also can use http link.
+can add more than one remote -- check 
+Push & Pull::
+git push origin master --> to push all files from local to remote repository.
+git pull origin master --> to pull all files from remote to local repository.
+git checkout commithexa[first 8 digits] file name --> reverts to that version file[the change where u updated.
+rm -rf dirname/filename --> to recursively remove directory or file.
+git remote rm origin --> remove remote named as origin.
+git remote add origin ssh/http --> add remote named as origin.
+ git clone::
+git clone username@172.23.5.77:/usr/local/cryo3d/cryo3d.git  -> to get existing repository from remote server.
+git diff --> what changed but not yet staged.
+.gitignore --> can write filenames what to be ignored.
+
+HEAD::
+HEAD is a pointer, which always points to the latest commit in the  branch. Whenever you make a commit, HEAD is updated with the latest  commit. The heads of the branches are stored in .git/refs/heads/ directory.
+
+Review Points::
+
+git branch -d  branch_name--> deletes the target branch.
+merge --> merge will combine multiple sequences of commits into one unified history (or) to combine two branches.
+Merging multiple branches at a time::
+     git checkout master
+     git merge b1 b2 b3 b4
+If Git encounters a piece of data that is changed in both histories it will be unable to automatically combine them. This scenario is a version control conflict and Git will need user intervention to continue.
+
+git log::
+      --To see your commit or other's commit message history.
+git log --oneline::
+This command lists one commit per line, shows the first 7 characters of the commit hexadecimal and the commit message.
+git log --stat::
+Displays a summary line of the total number of files changed and the lines that have been added or removed.
+git log -p::
+This command(patch) displays the files that have been modified, location of the lines that have been added or removed and the actual changes that have been made.
+git show::
+same as git log -p
+git show 8e5e8ced1cf --> to show changes of file of particular commit.
+git shortlog::
+To group commits by their authors i.e which authors made which commits.
+git shortlog -s ::
+Only show the number of commits made by each author.
+git log --pretty="%cn committed %h on %cd"::
+ To customize the log output in the terminal by using the --pretty flag using placeholders like::
+%cn --> stands for commit name,
+ %h --> for the commit hash and
+ %cd --> for the commit date.
+
+Filter by Author::
+git log --author="priyanka"::
+ Display all commits by an author by using the regular git log command including the author flag.
+Filter by Amount::
+git log -5 --oneline::
+Displays only that number(n) of commits on oneline.
+git log --after="13-11-2019"::
+Displays commit log after that particular date.
+git log --before="1-11-2019"::
+Displays commit log related to that date if no commit operations performed before that date nothing will be displayed.
+git log --merges::
+The --merges flag is used to display a log with only merge commits and the --no-merges flag does the opposite.
+git log --decorate::
+The --decorate flag shows a log of the commits and to which branch and tag they belong.
+
+1. Rename your local branch.
+If you are on the branch you want to rename:
+
+git branch -m new-name
+
+If you are on a different branch:
+
+git branch -m old-name new-name
+
+2. Delete the old-name remote branch and push the new-name local branch.
+git push origin :old-name new-name
+
+3. Reset the upstream branch for the new-name local branch.
+Switch to the branch and then:
+git push origin -u new-name
+
+Tags::
+
+Points to a specific commit and thereafter does not change, even if the branch moves on.
+Tags are immutable references.
+
+version 70.1.2 --> 70 indicates for major changes
+                                   1 for minor changes
+                                   2 for bug fixing.
+
+Annotated tags
+Non-annotated tags/lightweight tags
+Annotated tags::
+Annotated tags are public whereas lightweight tags are private.
+Annotated tags store extra meta data such as: the tagger name, email, and date. This is important data for a public release.
+ Lightweight tags are essentially 'bookmarks' to a commit, they are just a name and a pointer to a commit, useful for creating quick links to relevant commits.
+git tag  --> lists the tags
+git tag <tagname> --> creating tags as git tag v1.1
+git tag -a v1.1 --> creates a tag and opens an editior for meta data such as: the tagger name, email, and date as it is public.
+git tag -a v1.1 -m "Version 1" --> creates a new tag and forgo opening the local text editor in favor of saving the message passed in with the -m option.
+lightweight tags::
+Lightweight tags create a new tag checksum and store it in the .git/ directory of the project's repo.
+git tag v1.2-lw  --> creates a lightweight tag which is private tag.
+git tag -l *7 --> will list the tag that ends with 7 (using wildcard*).
+Replacing content::
+git tag -a -f v1.4 15027957951b64cf874c3557a0f3547bd83b3ff6 --> replaces forcely the content of v1.4 version tag.
+pushing tag::
+git push origin v1.1 --> pushes v1.1 tag to repo.
+git push origin --tags --> will push all tags to remote.
+Checkout tags::
+git checkout v1.1 but do git checkout -b v1.0 --> checkout the v1.4 tag and puts the repo in a detached HEAD state. This means any changes made will not update the tag. They will create a new detached commit. This new detached commit will not be part of any branch and will only be reachable directly by the commits SHA hash.
+git checkout -b v1.0  --> create a new branch pointer at the commit pointed and then shift your HEAD to point to that. Now, if you make commits, it will be possible to track them. 
+If we directly checkout to a tag then head will be detached and there will b no possibility of tracking commits.
+Deleting a tag::
+git tag -d v1.1 --> directly deletes the specified tag.
+git pull::
+git pull = fetch + merge
+git pull --> To update the local version of a repository from a remote.
+                     Ex: While working locally on master,execute git pull to update local copy of master and other remote tracking branches.
+                    As the local copy will be updated there will be chances for conflicts.
+  pull on the other hand downloads the data and integrates it with the current working files.
+ command for pull is
+                $ git pull origin master
+ So when you want to update your current HEAD branch with the latest  changes from the remote you always use pull. Since git pull, merges the  remote repository changes with the local ones it has a few things to be  kept in mind::
+ Merge conflict: That is when you try to merge files where  either two people make changes to the same line in the same file or when  two people add files with same name unknowingly etc.
+Its recommended to start a git pull only after committing the  files you currently working with or save them temporarily and have git  pull with a clean working copy.
+git fetch::
+Both fetch and pull are used to download data from the remote repository.
+command for fetch in git is
+                $ git fetch origin
+Fetch only downloads the data from the repository it does not  integrate with the files you're currently working with. 
+It only gives a  view of all the things happened in the remote repository.
+ Fetch is  considered harmless as it never manipulates or spoils anything i.e no chance for coonflicts as files are not updated in local.
+You can fetch as many times as you want without disturbing your current working  files.
+Merge types::
+1.Fast-Forward Merge
+If Master has not diverged, instead of creating a new commit, git will just point master to the latest commit of the feature branch. This is a “fast forward.” There won't be any "merge commit" in fast-forwarding merge.
+when there is a linear path from the current branch tip to the target branch then fast-forward merge occurs i.e; It combines the histories of current branch tip up to the target branch tip.
+-no-ff --> no fast forward
+2.3-Way Merge::
+A three-way merge is performed after an automated difference analysis between a file "A" and a file "B" while also considering the origin, or common ancestor, of both files "C". It is a rough merging method, but widely applicable since it only requires one common ancestor to reconstruct the changes that are to be merged.
+A three-way merge will helps us to compare files with original copy(common ancestor) then the VCS passes the common ancestor and the two contributors to  the three-way merge tool that will use all three to calculate the  result.
+
+Stash::
+
+NOTE::
+stash is local to your Git repository; stashes are not transferred to the server when you push.
+By default Git won't stash changes made to untracked or ignored files.
+git stash temporarily shelves (or stashes) changes you've made to your working copy so you can work on something else, and then come back and re-apply them later on.
+git stash show --name-only --> to show only files that are stashed.
+
+
+git stash --> Takes your uncommitted changes (both staged and unstaged), saves them away for later use, and then reverts them from your working copy.
+git stash pop --> Popping your stash removes the changes from your stash and reapplies them to your working copy.
+git stash apply --> you can reapply the changes to your working copy and keep them in your stash (or) if you want to apply the same stashed changes to multiple branches.
+
+By default, running git stash will stash:
+changes that have been added to your index (staged changes)
+changes made to files that are currently tracked by Git (unstaged changes)
+But it will not stash:
+new files in your working copy that have not yet been staged
+files that have been ignored
+Adding the -u option (or --include-untracked) tells git stash to also stash your untracked files.
+You can include changes to ignored files as well by passing the -a option (or --all) when running git stash.
+git stash list --> You can run git stash several times to create multiple stashes, and then use git stash list to view them. By default, stashes are identified simply as a "WIP" – work in progress – on top of the branch and commit that you created the stash from.
+ git stash save "message" --> stashes with a description, using git stash save "message".
+By default, git stash pop will re-apply the most recently created stash: stash@{0}
+git stash pop stash@{2} --> You can choose which stash to re-apply by passing its identifier as the last argument.
+git stash show --> summary of stash.
+git stash show -p --> --patch --> full diff of stash including file content changes. 
+git stash -p -->You can also choose to stash just a single file, a collection of files, or individual changes from within files. If you pass the -p option (or --patch) to git stash, it will iterate through each changed "hunk" in your working copy and ask whether you wish to stash it.
+
+Command
+Description
+/
+search for a hunk by regex
+?
+help
+n
+don't stash this hunk
+q
+quit (any hunks that have already been selected will be stashed)
+s
+split this hunk into smaller hunks
+y
+stash this hunk
+There is no explicit "abort" command, but hitting CTRL-C(SIGINT) will abort the stash process.
+hunk --> piece of change.
+you can use git stash branch to create a new branch to apply your stashed changes::
+git stash branch branch_name stash@{1}  --> This checks out a new branch based on the commit that you created your stash from, and then pops your stashed changes onto it..
+git stash drop stash@{1} --> deleting particular stash.
+git stash clear --> to delete all stashes.
+git checkout file_name --> discard changes in particular file and removes from stagging state.
+git checkout . --> to discard all the changes in all files.
+git reset::
+       --to undo changes in working and staging area.
+git reset HEAD * --> to unstage all the files in staging area.
+git reset HEAD one.sh --> to unstage  a particular file in staging area.
+when we unstage a file those changes are kept in working area.
+git reset HEAD --mixed  --> default flag.
+git reset types::
+git reset --soft --> moves all the changes to the staging area.
+git reset (or) git reset --mixed --> moves all the changes to the working directory.
+git reset --hard --> destructive purpose to move all the changes to the trash.
+Example::
+1. reset --hard::
+Let us now execute a git reset --hard and examine the new state of the repository.
+
+$ git reset --hard
+HEAD is now at dc67808 update content of reset_lifecycle_file
+$ git status
+On branch master
+nothing to commit, working tree clean
+$ git ls-files -s
+100644 d7d77c1b04b5edd5acfc85de0b592449e5303770 0 reset_lifecycle_file
+
+Here we have executed a "hard reset" using the --hard option. Git displays output indicating that HEAD is pointing to the latest commit dc67808. Next, we check the state of the repo with git status.  Git indicates there are no pending changes. We also examine the state  of the Staging Index and see that it has been reset to a point before new_file was added. Our modifications to reset_lifecycle_file and the addition of new_file have been destroyed. This data loss cannot be undone, this is critical to take note of.
+2.reset --soft::
+
+Let us now execute a git reset --soft and examine it.
+
+$ git reset --soft
+$ git status
+On branch master
+Changes to be committed:
+(use "git reset HEAD ..." to unstage)
+modified: reset_lifecycle_file
+$ git ls-files -s
+100644 67cc52710639e5da6b515416fd779d0741e3762e 0 reset_lifecycle_file
+
+We have executed a 'soft reset'. Examining the repo state with git status and git ls-files shows that nothing has changed. This is expected behavior. A soft reset will only reset the Commit History. By default, git reset is invoked with HEAD as the target commit. Since our Commit History was already sitting on HEAD and we implicitly reset to HEAD nothing really happened.
+3.reset -- mixed::
+
+Let us now execute a git reset --mixed and examine it.
+
+$ git reset --mixed
+$ git status
+On branch master
+Changes not staged for commit:
+(use "git add ..." to update what will be committed)
+(use "git checkout -- ..." to discard changes in working directory)
+modified: reset_lifecycle_file
+Untracked files:
+(use "git add ..." to include in what will be committed)
+new_file
+no changes added to commit (use "git add" and/or "git commit -a")
+$ git ls-files -s
+100644 d7d77c1b04b5edd5acfc85de0b592449e5303770 0 reset_lifecycle_file
+
+Here we have executed a "mixed reset". To reiterate, --mixed is the default mode and the same effect as executing git reset. Examining the output from git status and git ls-files, shows that the Staging Index has been reset to a state where reset_lifecycle_file is the only file in the index. The object SHA for reset_lifecycle_file has been reset to the previous version.
+
+
+
+
+        
+                                                 
+ 
+
+
+
+
