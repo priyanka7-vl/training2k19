@@ -1,0 +1,222 @@
+CSS::
+
+ --- Cascading style Sheet
+CSS is a language that describes the style of an HTML document.
+CSS describes how HTML elements should be displayed.
+CSS saves a lot of work. It can control the layout of multiple web pages all at once
+External stylesheets are stored in CSS files
+A CSS rule-set consists of a selector and a declaration block:
+
+The selector points to the HTML element you want to style.
+The declaration block contains one or more declarations separated by  semicolons.
+Each declaration includes a CSS property name and a value, separated by a colon.
+A CSS declaration always ends with a semicolon, and declaration blocks are  surrounded by curly braces. 
+Example
+In this example all <p> elements will be center-aligned, with a red  text color:
+ p { 
+  color: red;   
+  text-align: center;
+}  
+
+The CSS id Selector
+The id selector uses the id attribute of an HTML element to select a specific element.
+The id of an element is unique within a page, so the id selector is  used to  select one unique element!
+To select an element with a specific id, write a hash (#) character, followed by  the id of the element.
+Example
+The CSS rule below will be applied to the HTML element with id="para1": 
+ #para1 {  
+   text-align: center;   
+   color: red;
+}  
+
+The CSS class Selector
+The class selector selects HTML elements with a specific class attribute.
+To select elements with a specific class, write a period (.) character, followed by the  class name.
+Example
+In this example all HTML elements with class="center" will be red and center-aligned: 
+ .center {
+    text-align: center; 
+    color: red;
+}  
+
+Note:
+ A class name cannot start with a number!
+
+All CSS Simple Selectors
+Selector
+Example
+Example description
+.class
+.intro
+Selects all elements with class="intro"
+#id
+#firstname
+Selects the element with id="firstname"
+*
+*
+Selects all elements
+element
+p
+Selects all <p> elements
+element,element,..
+div, p
+Selects all <div> elements and all <p> elements
+Three Ways to Insert CSS
+There are three ways of inserting a style sheet:
+External CSS
+Internal CSS
+Inline CSS
+
+External CSS
+With an external style sheet, you can change the look of an entire website by changing  just one file!
+Each HTML page must include a reference to the external style sheet file inside  the <link> element, inside the head section.
+Example
+External styles are defined within the <link> element, inside the <head> section of an HTML page:
+<!DOCTYPE html>
+<html>
+    <head>
+       <link rel="stylesheet" type="text/css"    href="mystyle.css">
+    </head>
+    <body>
+      <h1>This is a heading</h1>  
+      <p>This is a paragraph.</p>
+    </body>
+</html>
+"mystyle.css"
+body {  
+background-color: lightblue;
+}
+h1 { 
+ color: navy;  
+margin-left: 20px;
+}
+
+Internal CSS
+An internal style sheet may be used if one single HTML page has a unique style.
+The internal style is defined inside the <style> element, inside the head  section.
+Example
+Internal styles are defined within the <style> element, inside the <head> section of an HTML page:
+<!DOCTYPE html>
+<html>
+       <head>
+           <style>
+               body {    
+                         background-color: linen;
+                }
+                h1 {  
+                         color: maroon;     
+                         margin-left: 40px;
+                }
+            </style>
+         </head>
+             <body>
+                <h1>This is a    heading</h1>
+                <p>This is a paragraph.</p>
+              </body>
+</html>
+
+Inline CSS
+An inline style may be used to apply a unique style for a single element.
+To use inline styles, add the style attribute to the relevant element. The style attribute can contain any CSS property.
+Example
+Inline styles are defined within the "style" attribute of the relevant    element:
+<!DOCTYPE html>
+<html>
+         <body>
+             <h1 style="color:blue;text-align:center;">This    is a heading</h1>
+             <p style="color:red;">This is a paragraph.</p>  
+         </body>
+</html>
+Pseudo Classes::
+A pseudo-class is used to define a special state  of an element.
+For example, it can be used to:
+Style an element when a user mouses over it
+Style visited and unvisited links differently
+Style an element when it gets focus
+Syntax::
+selector:pseudo-class {
+
+  property:value;
+
+}
+:first-child
+:last-child
+:nth-child
+:first-of-type
+:last-of-type
+:nth-of-type
+:Adjacent sibling +
+:All siblings ~
+:not
+Specificity::
+   --to reduce complexity we use specificity
+Determining which style is more specific::
+Number of ID selectors = a
+Class,attribute and pseudo-class selectors = b
+type and pseudo-elements = c
+Concatenate a-b-c gives you Specificty
+Jazzing Up Text::
+1.Font Size:
+em & % (.5 em and 50%)
+px
+keywords(small,medium,large,x-large)
+2.Font Color:
+rgb
+Rgba
+3.capitalizing-text transform::
+uppercase
+lowercase
+capitalize
+font-variant:small-caps
+text-decoration:overline
+4.kerning:
+letter-spacing:-1px;
+word-spacing:2px;
+5.Leading:
+line-height:125%;
+line-height:1.25;
+Margins,borders,padding::
+Understanding the box model:
+A paragraph is  a box
+An image is a box
+Each tag is a box
+A page contain Boxes within boxes
+Margin::
+the space that separates a box
+padding::
+the space between the border and content
+border::
+the line around each edge of the box
+LESS::(Learn style sheets)::
+--Dynamic Style Sheet Language
+"Compiles" to css
+css pre-processor
+To install::
+First create node js and then through cmd type::
+npm install -g less
+To compile 
+lessc style.less style.css
+Scope:
+available variable space
+While using single line and block level comments in less code in css file only block comments will be appeared single line comments will be ignored in css file.
+files can be imported using @import
+Variables::
+Variable assignment is done with colon(:)
+Extend:
+Extend is a LESS pseudo class which extends other selector styles in one selector by using :extend selector.
+Mixins:
+functions in programming language
+ixins are a group of CSS properties that allow you to use properties of one class for another class and includes class name as its properties.
+ It can store multiple values and can be reused in the code whenever necessary.
+List Functions::
+1.Length
+It will take a comma or space separated list of values as parameter.
+2.Extract
+It will return the value at a specified position in a list.
+LESS allows the addition of values to comma or space separated list from multiple properties using a single property.
+Merge::
+Comma
+It adds property value at the end.
+Space
+It adds property value with space.
+

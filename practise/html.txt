@@ -1,0 +1,243 @@
+HTML:: 
+
+Note Points::
+Html --> Hyper text mark up language.
+                 Tim Berners Lee -1990
+DOCTYPE --> to know version of the document.
+Elements or tags::
+HTML tags are not case sensitive: < Ex:: P> means the same as <p>.
+<html> --> acts as the root of the doc
+<head> --> contains doc's metadeta [can include a title for the document, scripts, styles, meta information, and more.]
+        |
+  <title> --> title for page 
+  <meta> --> metadata from viewport
+  <script> --> to write some script inside doc (or) to link to another doc
+  <style> --> inline styling 
+  <link> --> to link to external css
+  <base> --> base address linking to all other docs,specified only in head 
+  <title> --> title of page displayed in the title bar
+  <meta> --> how to render a page [to specify page description, keywords, author of the document, last modified, and other metadata.]
+  <link> --> to define a relationship between an HTML document and an external resource i.e.,relationship between a document and one or more external CSS stylesheets.
+  <body> --> the content to be dispalyed
+1.text --> render out of text in diff sizes and styles.
+                 <p>
+                  
+2.lists --> define set of items in ordered and unordered manner
+                 <ol>
+                 <ul>
+3.links --> to redirect from one doc to other doc
+                 <link>
+4.tables --> for creating tables
+                  <th> --> table heading
+                  <tr> --> table row
+                  <td> --> table definition   
+                                 colspan
+                                 rowspan
+5.images --> to display visually images in our web page
+                     <img>
+id --> should be unique
+name --> can be same or diff
+class --> can be same for diff elements on same page 
+Headings::
+h1 --> largest -->primary heading
+h2                                  |                      
+h3                                  |
+h4                                  |
+h5                                  |
+h6 --> smallest           | 
+                        secondary heading
+Block vs Inline Elements::
+1.Block Elements::
+containers to group other elements
+ex: div
+2.Inline Elements
+container for text
+ex: span
+List of block level elements
+p
+h1, h2, h3, h4, h5, h6
+ol, ul
+pre
+address
+blockquote
+dl
+div
+fieldset
+form
+hr
+noscript
+table
+List of inline elements
+
+b, big, i, small, tt
+abbr, acronym, cite, code, dfn, em, kbd, strong, samp, var
+a, bdo, br, img, map, object, q, script, span, sub, sup
+button, input, label, select, textarea
+Text Breaking and Whitespace::
+<pre> --> preformatted[preserves both spaces and line breaks]
+fixed-pitched font, with whitespace in tact, and without word wrap
+<br/> --> to break a line
+<hr/> --> to place a horizontal line
+&nbsp; --> character entity used for adding real spaces
+&lt and &gt --> less than greater than
+
+Reference Text/Text Formatting::
+<b> - Bold text
+<strong> - Important text
+<i> - Italic text
+<mark> - Marked text[highlighted with yellow bg]
+<small> - Small text
+<del> - Deleted/removed text[strikes off]
+<ins> - Inserted text
+<sup> --> superscript
+<sub> --> subscript
+<em> --> emphasizes text [defaultly browser italisizes the string in <em> we can changes from italic to other through css]
+<cite> --> contain the title of a work from which the quote comes(citation)
+<abbr> --> abbrevation or short form
+<code> --> to insert fragments of program code, variables, etc. into an HTML document.
+<samp> --> to convey that some inline text represents output from a computer script.
+<kbd> --> defines keyboard input
+<var> --> to define variable
+<blockquote> --> to define blockquote[browser usually provides indent fr blockquote]
+<q> --> inline quote[provides double quotes to sentence]
+<address> --> defines contact information displays in italic.
+Lists:: <li>::
+    ---- used to represent an item in a list.
+1.unordered list
+unordered list items are usually displayed using bullet points.
+<ul>
+2.ordered list
+ordered lists are usually displayed with an ascending counter on the left, such as a number or letter.
+<ol>
+3.definition list
+The definition list is created using <dl> element. The <dl> element is used in conjunction with the <dt> element which specify a term, and the <dd> element which specify the term's definition.
+
+Linking Documents::
+<a> --> anchor tag to redirect or navigate to referred link in href
+             <a href="https:://www.w3schools.com">
+Attributes::
+language --> metadata provides version of doc
+             <script lang="javascript">
+relationship --> how a doc related to a page
+             <link rel="https:://www">
+content type --> which type of content may b like doc,img or other type of content.
+              <meta name="w3" content="tutorial">
+accesskey --> keyboard shortcuts to activate/focus specific elements
+              <element accesskey = "single_character">  
+target --> where the link will be opened[generally it opens on same window but we can ask browser to open on particular window]
+               <a href="" target="_blank">
+Note::
+Most browsers will display content correctly even if we forget the end tag but sometimes it may cause unexpected results or errors.
+Browsers display <strong> as <b>, and <em> as <i>. However, there is a difference in the meaning of these tags: <b> and <i> defines bold and italic text, but <strong> and <em> means that the text is "important".
+<aside> tag is used to place the content in sidebar.
+<article> tag is used for independent and self-contained content.
+iframe --> to dispaly a web page within a webpage.
+<iframe src="demo_iframe.htm" height="200" width="300"></iframe>
+Forms::
+-- used to accept input from the user.
+<form>
+.
+.
+form elements
+.
+.
+</form>
+
+input type Values::
+Value Name
+Notes
+button
+Defines a button-like input.
+checkbox
+Defines a checkbox, which the user can toggle on or off.
+file
+Defines a file upload box with a browse button.
+hidden
+Defines a field within a form that is not visible to the user.
+image
+Defines an image that is clicked to submit a form.
+password
+Displays an obfuscated password entry field.
+radio
+Defines a circular selection button in a form.
+reset
+Defines a button on a form that will return all fields to their default values.
+submit
+Defines a button that is clicked to submit a form.
+text
+Defines a text entry field in a form.
+action Attribute::
+The action attribute defines the action to be performed when the form is submitted.
+<form action="/action_page.php">
+GET::
+The method attribute specifies the HTTP method (GET or POST) to be used when submitting the form data:
+The default method when submitting form data is GET.
+However, when GET is used, the submitted form data will be visible in the page address  field:
+/action_page.php?firstname=Mickey&lastname=Mouse
+
+Notes on GET: 
+Appends form-data into the URL in name/value pairs
+The length of a URL is limited (2048 characters)
+Never use GET to send sensitive data! (will be visible in the URL)
+Useful for form submissions where a user wants to bookmark the result
+GET is better for non-secure data, like query strings in Google
+
+POST::
+
+Always use POST if the form data contains sensitive or personal information.  The POST method does not display the submitted form data in the page address field.
+Notes on POST: 
+POST has no size limitations, and can be used to send large amounts of data.
+Form submissions with POST cannot be bookmarked
+Form Elements::
+1.select::
+
+     The <select> element defines a drop-down list:
+Example
+<select name="cars">  
+    <option value="volvo">Volvo</option>    
+    <option value="saab">Saab</option>  
+    <option value="fiat">Fiat</option>     
+    <option value="audi">Audi</option>
+</select>
+
+2.textarea::
+
+The <textarea> element defines a multi-line input field (a text area):
+Example
+  <textarea name="message" rows="10" cols="30">
+       The cat was playing in the garden.
+</textarea>
+
+3.button::
+
+The <button> element defines a clickable button:
+Example
+  <button type="button"  onclick="alert('Hello World!')">Click Me!</button>
+Tag
+Description
+<form>
+Defines an HTML form for user input
+<input>
+Defines an input control
+<textarea>
+Defines a multiline input control (text area)
+<label>
+Defines a label for an <input> element
+<fieldset>
+Groups related elements in a form
+<legend>
+Defines a caption for a <fieldset> element
+<select>
+Defines a drop-down list
+<optgroup>
+Defines a group of related options in a drop-down list
+<option>
+Defines an option in a drop-down list
+<button>
+Defines a clickable button
+
+
+
+
+
+
