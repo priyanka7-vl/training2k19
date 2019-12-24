@@ -1,0 +1,360 @@
+JAVASCRIPT::
+
+JavaScript was initially created to “make web pages alive”.
+The programs in this language are called scripts. They can be written right in a web page’s HTML and run automatically as the page loads.
+JavaScript can execute not only in the browser, but also on the server, or actually on any device that has a special program called the JavaScript engine.
+The browser has an embedded engine sometimes called a “JavaScript virtual machine”.
+Different engines have different “codenames” like ::
+            1. V8  - Chrome and Opera
+             2. SpiderMonkey - Firefox
+             3. Chakra,Trident - Internet Explorer(IE)
+             4. Nitro,SquirrelFish  - Safari
+             5. ChakraCore - Microsoft Edge
+NOTE::
+
+1.If src is set, the script content is ignored.
+
+<script src="file.js">
+alert(1);    // the content is ignored, because src is set
+</script>
+
+A single <script> tag can’t have both the src attribute and code inside.
+
+2.As a rule, only the simplest scripts are put into HTML. More complex ones reside in separate files.
+The benefit of a separate file is that the browser will download it and store it in its cache.
+
+Other pages that reference the same script will take it from the cache instead of downloading it, so the file is actually downloaded only once.
+
+That reduces traffic and makes pages faster.
+3.JavaScript interprets the line break as an “implicit” semicolon. This is called an automatic semicolon insertion.
+
+4.JavaScript does not assume a semicolon before square brackets [...].
+1.use strict::
+  --- modern mode
+"use strict"  --> When it is located at the top of a script, the whole script works as the “modern” way.
+         Ensure that “use strict” is at the top
+Please make sure that "use strict" is at the top of your scripts, otherwise strict mode may not be enabled.
+
+         There’s no way to cancel use strict
+There is no directive like "no use strict" that reverts the engine to old behavior.
+Once we enter strict mode, there’s no going back.
+Data Types::
+ 1.Number:
+The number type represents both integer and floating point numbers.
+There are many operations for numbers, e.g. multiplication *, division /, addition +, subtraction -, and so on.
+Besides regular numbers, there are so-called “special numeric values” which also belong to this data type: Infinity, -Infinity and NaN.
+Ex::
+          let n = 123;
+           n = 12.345;
+
+ 2.BigInt:
+“number” type cannot represent integer values larger than 253 (or less than -253 for negatives), that’s a technical limitation caused by their internal representation.
+Ex::
+                 const bigInt = 1234567890123456789012345678901234567890n;  // 'n' represents BigInt
+
+ 3.String:
+A string surrounded by quotes.
+1.Double quotes: "Hello".
+2.Single quotes: 'Hello'.
+3.Backticks: `Hello`.
+
+ 4.Boolean:
+The boolean type has only two values: true and false.
+Ex::
+let nameFieldChecked = true; // yes, name field is checked
+let ageFieldChecked = false; // no, age field is not checked
+
+ 5.null:
+It’s just a special value which represents “nothing”, “empty” or “value unknown”.
+Ex::
+                let age = null;
+ 6.undefined:
+The meaning of undefined is “value is not assigned”.
+If a variable is declared, but not assigned, then its value is undefined:
+Ex::
+let x;
+alert(x); // shows "undefined"
+
+ 7.Objects and Symbols:
+objects:
+In contrast, objects are used to store collections of data and more complex entities. 
+symbols:
+The symbol type is used to create unique identifiers for objects. We mention it here for completeness.
+
+typeof operator::
+typeof undefined    // "undefined"
+typeof 0   // "number"
+typeof 10n   // "bigint"
+typeof true   // "boolean"
+typeof "foo"   // "string"
+typeof Symbol("id")   // "symbol"
+typeof Math   // "object"  (1)
+typeof null   // "object"  (2)
+typeof alert   // "function"  (3)
+Note::
+1.Math --> in-built object
+2.alert  --> function
+3.Increment/decrement can only be applied to variables. Trying to use it on a value like 5++ will give an error.
+Array methods
+
+Arrays provide a lot of methods. To make things easier, in this chapter they are split into groups.
+
+Add/remove items
+We already know methods that add and remove items from the beginning or the end:
+
+arr.push(...items) – adds items to the end,
+arr.pop() – extracts an item from the end,
+arr.shift() – extracts an item from the beginning,
+arr.unshift(...items) – adds items to the beginning.
+
+1.Splice::
+The arr.splice(start) method is a swiss army knife for arrays. It can do everything: insert, remove and replace elements.
+The syntax is:
+
+arr.splice(index[, deleteCount, elem1, ..., elemN])
+
+It starts from the position index: removes deleteCount elements and then inserts elem1, ..., elemN at their place. Returns the array of removed elements.
+
+2.slice::
+The method arr.slice is much simpler than similar-looking arr.splice.
+
+The syntax is:
+
+arr.slice([start], [end])
+
+It returns a new array copying to it all items from index start to end (not including end). Both start and end can be negative, in that case position from array end is assumed.
+
+3.push::
+It pushes/adds one element at the end.
+
+4:pop::
+It removes an  element from the end of an array.
+
+5.unshift:
+adds an element at the begining.
+
+6.shift:
+removes an element from the begining.
+
+7.sort:
+The sort() method sorts the elements of an array in place and returns the sorted array. 
+The default sort order is ascending.
+Ex:
+        const months = ['March', 'Jan', 'Feb', 'Dec'];
+        months.sort();
+        console.log(months);        // expected output: Array ["Dec", "Feb", "Jan", "March"]
+
+        const array1 = [1, 30, 4, 21, 100000];
+        array1.sort();
+        console.log(array1);        // expected output: Array [1, 100000, 21, 30, 4]
+8.map:
+ The map() method creates a new array with the results of calling a provided function on every element in the calling array.
+Ex:
+const array1 = [1, 4, 9, 16];
+const map1 = array1.map(x => x + 2);
+console.log(map1);      // expected output: Array [2, 8, 18, 32]
+
+String Methods:
+
+1.Search::
+to search for a match between a regular expression and string object.
+/g
+
+^
+
+[^]
+
+\w
+
+\s
+Perform a global match (find all matches rather than stopping after the first match)
+
+Rather than this
+
+any character not between the bracket
+
+a word character
+
+a space character
+
+Ex:
+let string = "GeeksforGeeks"; 
+let re1 = /G/; 
+let re2 = /e/; 
+let re3 = /s/; 
+console.log(string.search("for") ); 
+console.log(string.search(re2)); 
+console.log(string.search(re3)); 
+
+2.includes:
+The includes() method determines whether a string contains the characters of a specified string.
+string.includes(searchvalue, start)
+Parameter Values
+Parameter
+Description
+searchvalue
+Required. The string to search for
+start
+Optional. Default 0. At which position to start the search
+
+Ex:       
+let str = "Hello world, welcome to the universe.";
+let n = str.includes("world", 12);  // false;          **[let n= str.includes("'world");]   // true;**
+console.log(n);
+
+3.indexOf:
+The indexOf() method returns the position of the first occurrence of a specified value in a string.
+This method returns -1 if the value to search for never occurs.
+Ex:
+let str = "Hello world, welcome to the universe.";
+let n = str.indexOf("welcome");        // 13
+
+4.lastIndexOf:
+The lastIndexOf() method searches the array for the specified item, and returns its position.
+The search will start at the specified position, or at the end if no start position is specified, and end the search at the beginning of the array.
+Returns -1 if the item is not found.
+If the item to search for is present more than once, the lastIndexOf method returns the position of the last occurence.
+
+Ex:              
+let fruits = ["Banana", "Mango","Orange", "Apple", "Mango", "Banana", "Orange", "Apple"];
+let a = fruits.lastIndexOf("Mango");
+console.log(a);
+
+5.charAt:
+charAt() is a method that returns the character from the specified index. Characters in a string are indexed from left to right.
+Ex:
+               
+let str = new String("This is string"); 
+console.log("str.charAt(0) is:" + str.charAt(0));       //T
+console.log("str.charAt(1) is:" + str.charAt(1));      //h
+console.log("str.charAt(2) is:" + str.charAt(2));      //i
+console.log("str.charAt(3) is:" + str.charAt(3));     //s
+console.log("str.charAt(4) is:" + str.charAt(4));     //
+console.log("str.charAt(5) is:" + str.charAt(5));     //i
+
+6.replace:
+The replace() method returns a new string with some or all matches of a pattern replaced by a replacement. 
+The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match. 
+If pattern is a string, only the first occurrence will be replaced.
+Ex:
+               letp = 'The quick brown fox jumps over the lazy dog. If the dog reacted, was it really lazy?';
+               let regex = /dog/gi;
+               console.log(p.replace(regex, 'ferret'));        // "The quick brown fox jumps over the lazy ferret. If the ferret reacted, was it really lazy?"
+               console.log(p.replace('dog', 'monkey'));        //"The quick brown fox jumps over the lazy monkey. If the dog reacted, was it really lazy?"
+7.match:
+The match() method retrieves the result of matching a string against a regular expression.
+Ex:
+var paragraph = 'The quick brown fox jumps over the lazy dog. It barked.';
+var regex = /[A-Z]/g;
+var found = paragraph.match(regex);
+console.log(found);   // expected output: Array ["T", "I"]
+
+8.slice:
+to slice a string i.e to obtain a sub string by specified positions.
+Ex:
+  
+let str4 = 'The quick brown fox jumps over the lazy dog.';
+console.log(str4.slice(31))
+console.log(str4.slice(4, 19));
+console.log(str4.slice(-8));
+console.log(str4.slice(-11, -5));
+
+
+NOTE::
+
+alert(typeof {});      // object
+alert(typeof []);     // same(object)
+alert(Array.isArray({}));      // false  
+alert(Array.isArray([]));     // true
+
+objects::
+trailing or hanging comma --> makes easier to remove/add/move around properties,because all seems to be alike.
+for accessing multi words in property name we use "quotes" [ex-"fav color":violet].
+to access this multi words we won't use "dot",we use "square brackets" [ex-console.log(user["fav color"])].
+prompt[run-time] --> can be used to access with "square bracket"
+we can use square brackets in object literal called --> computed properties
+"reserved words" are also written as property names
+Ex:        
+ let obj = {   for: 1,   let: 2,   return: 3 }; 
+ console.log( obj.for + obj.let + obj.return );  // 6
+
+Existence-check::
+in::
+There also exists a special operator "in" to check for the existence of a property.
+Ex:
+           let user = { name:priyanka, age:20 };
+           console.log("name" in user);
+
+Copying reference::
+Primitive values: strings, numbers, booleans – are assigned/copied “as a whole value”.
+but "objects" stores "address of memory" called reference.
+When an object variable is copied – the reference is copied, the object is not duplicated.
+comparision by reference::
+The equality == and strict equality === operators for objects work exactly the same.
+
+Two objects are equal only if they are the same object.
+For instance, if two variables reference the same object, they are equal:
+Ex:
+            let a = {}; let b = a;    // copy the reference  
+            alert( a == b );     // true, both variables reference the same object 
+            alert( a === b );   // true
+
+And here two independent objects are not equal, even though both are empty:
+Ex:
+             let a = {}; 
+             let b = {};      // two independent objects  
+             alert( a == b );    // false
+
+Garbage collection::
+If we create an object then the global variable refers to the object 
+If we copied refernce and overwrite the global variable then the value is lost,then value become unreachable.
+Once the value is lost then there is no way to access it so garbage collector will  junk the data and free the memory.
+
+Symbols::
+A “symbol” represents a unique identifier.
+A value of this type can be created using Symbol():
+Ex:
+// id is a new symbol 
+let id = Symbol();
+Upon creation, we can give symbol a description (also called a symbol name), mostly useful for debugging purposes:
+Ex:
+// id is a symbol with the description "id" 
+
+let id = Symbol("id");
+
+here are two symbols with the same description – they are not equal:
+Ex:
+             let id1 = Symbol("id"); 
+             let id2 = Symbol("id");  
+             alert(id1 == id2);    // false
+*Symbols don't auto-convert to string.
+
+this::
+To access the object,a methods uses "this"
+Ex:
+             
+let user = {
+ name: "John",
+age: 30,
+  sayHi() {
+    // "this" is the "current object"
+alert(this.name);
+ }
+};
+user.sayHi(); // John
+
+Primitive::
+Is a value of a primitive type.
+There are 6 primitive types: string, number, boolean, symbol, null and undefined.
+Object::
+Is capable of storing multiple values as properties.
+Can be created with {}, for instance: {name: "John", age: 30}. There are other kinds of objects in JavaScript: functions, for example, are objects.
+
+NOTE::
+If we placed a single dot: 123456.toString(36), then there would be an error, because JavaScript syntax implies the decimal part after the first dot. And if we place one more dot, then JavaScript knows that the decimal part is empty and now goes the method.
+ 32-bit integers ~n equals -(n+1).
+Ex:
+                alert( ~2 ); // -3, the same as -(2+1) 
+                alert( ~1 ); // -2, the same as -(1+1) 
+                alert( ~0 ); // -1, the same as -(0+1) 
+                alert( ~-1 ); // 0, the same as -(-1+1)
