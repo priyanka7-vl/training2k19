@@ -10,3 +10,7 @@ function validateEmail(email)
  return false;
  } 
 } 
+
+console.log(validateEmail("priya@rapidops.com"));
+console.log(validateEmail("1234567"));
+console.log(validateEmail("priya"));
