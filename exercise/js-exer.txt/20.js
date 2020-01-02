@@ -33,12 +33,12 @@ let input = [
 
 let hobbies = [];
 let result = {};
-input.forEach(person=>{
+input.forEach(person => {
     hobbies = [...hobbies,...person.hobbies];
     hobbies = [...new Set(hobbies)];
 });
 for(let hobby of hobbies) {
-    let hobbienames = input.filter(val => val.hobbies.includes(hobby)).map((match_name => match_name.name));
-    result[hobby] = hobbienames;
+    let hobbieHolderNames = input.filter(val => val.hobbies.includes(hobby)).map((match_name => match_name.name));
+    result[hobby] = hobbieHolderNames;
 }
 console.log(result);
