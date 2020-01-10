@@ -6,7 +6,11 @@
 
 2.Delete file which has special characters. “ -“, “—“, “*”, “$”.
 
-rm ">>filename"
+This is to remove files containing special characters in filename::
+find . -type f -name "*[~!@#$%^&*()]*" -delete
+
+This is to remove special characters from a file content::
+cat existingfilename | tr -d '\~!@#$%^&*(){}[];.' > newfilename
 
 3. Write a shell script that take two input numbers from user at runtime and display arithmetic
 operation on that numbers, find out max, & min number from them, find weather that numbers
